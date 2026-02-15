@@ -23,21 +23,23 @@ const LoginForm = () => {
   const onSubmit = (data: any) => console.log(data);
   return (
     <>
-      <div className="">
-        <div className="">Login</div>
+      <div className="text-center">
+        <div className="text-4xl">Login</div>
         <div className="">
           Don’t have an account?{" "}
           <span>
             <Link href={"#"}>Create account</Link>
           </span>
         </div>
-        <div className="">
-          <Button>Continue with Google</Button>
+        <div>
+          <Button className="w-full bg-blue-600 hover:bg-blue-800">
+            Continue with Google
+          </Button>
         </div>
-        <div className="">
-          <div className=""></div>
+        <div className="flex">
+          <div className="w-full h-0.1  bg-gray-600">gfh</div>
           <div className="">Or</div>
-          <div className=""></div>
+          <div className="w-full h-1 p-1">dfg</div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-80">
           <div>
