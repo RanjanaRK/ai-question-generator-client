@@ -9,7 +9,7 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  name: z.string(),
+  name: z.string().min(2, { message: "must be at least 2 characters" }),
   email: z.string().email(),
   password: z
     .string()
