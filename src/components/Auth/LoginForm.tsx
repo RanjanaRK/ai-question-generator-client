@@ -4,13 +4,17 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-
 import { loginSchema } from "@/lib/schema/zodSchema";
-import { LoginSchemaType } from "@/lib/type";
+import { LoginSchemaType } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Eye, EyeClosed } from "lucide-react";
+import { Separator } from "../ui/separator";
+import { useState } from "react";
 
 const LoginForm = () => {
+  const [show, setShow] = useState(true);
+
   const {
     register,
     handleSubmit,
@@ -23,36 +27,60 @@ const LoginForm = () => {
   const onSubmit = (data: any) => console.log(data);
   return (
     <>
-      <div className="text-center">
-        <div className="text-4xl">Login</div>
-        <div className="">
-          Don’t have an account?{" "}
-          <span>
-            <Link href={"#"}>Create account</Link>
-          </span>
+      <div className="space-y-6">
+        <div className="text-center space-y-2">
+          <div className="text-4xl font-semibold">Login</div>
+          <div className="">
+            Don’t have an account?{" "}
+            <span>
+              <Link href={"#"} className="text-blue-600 hover:underline">
+                Create account
+              </Link>
+            </span>
+          </div>
         </div>
-        <div>
-          <Button className="w-full bg-blue-600 hover:bg-blue-800">
-            Continue with Google
-          </Button>
-        </div>
-        <div className="flex">
-          <div className="w-full h-0.1  bg-gray-600">gfh</div>
+        <Button className="w-full bg-blue-600 hover:bg-blue-800">
+          Continue with Google
+        </Button>
+        <div className="flex items-center gap-3 ">
+          <Separator className=" flex-1" />
           <div className="">Or</div>
-          <div className="w-full h-1 p-1">dfg</div>
+          <Separator className="flex-1" />
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-80">
-          <div>
-            <Label>Email</Label>
-            <Input {...register("email")} />
+          <div className="">
+            <Input placeholder="Email" {...register("email")} />
+            {errors.email && (
+              <p role="alert" className="text-red-500 text-start text-sm">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
-          <div>
-            <Label>Password</Label>
-            <Input type="password" {...register("password")} />
+          <div className="relative">
+            <Input
+              type={show ? "text" : "password"}
+              placeholder="Password"
+              {...register("password")}
+            />
+            <button
+              type="button"
+              onClick={() => setShow(!show)}
+              className="absolute right-3 top-2 h-4 w-4 text-muted-foreground"
+            >
+              {show ? <Eye /> : <EyeClosed />}
+            </button>
+
+            {errors.password && (
+              <p role="alert" className="text-red-500 text-start text-sm">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
-          <Button type="submit">Login</Button>
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
         </form>
       </div>
     </>
