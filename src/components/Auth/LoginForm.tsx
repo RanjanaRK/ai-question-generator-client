@@ -33,7 +33,10 @@ const LoginForm = () => {
           <div className="">
             Don’t have an account?{" "}
             <span>
-              <Link href={"#"} className="text-blue-600 hover:underline">
+              <Link
+                href={"/auth/register"}
+                className="text-blue-600 hover:underline"
+              >
                 Create account
               </Link>
             </span>

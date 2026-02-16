@@ -1,18 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { Button, buttonVariants } from "../ui/button";
-import ModeToggle from "./ModeToggle";
-import { useTheme } from "next-themes";
 import Link from "next/link";
+import { buttonVariants } from "../ui/button";
+import ModeToggle from "./ModeToggle";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const { theme, setTheme } = useTheme();
-
-  const isDark = theme === "dark";
+  const pathname = usePathname();
+  const isAuthPage = pathname.startsWith("/auth");
   return (
     <>
-      <nav className="border-b bg-background">
+      <nav className={`${!isAuthPage ? "border-b" : ""} bg-background `}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href={"/"} className="flex items-center gap-1">
             <Image
@@ -35,16 +34,18 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <div className="flex items-center gap-3">
-            <ModeToggle />
+          {!isAuthPage && (
+            <div className="flex items-center gap-3">
+              <ModeToggle />
 
-            <Link
-              href={"/auth/login"}
-              className={buttonVariants({ variant: "default" })}
-            >
-              Login
-            </Link>
-          </div>
+              <Link
+                href="/auth/login"
+                className={buttonVariants({ variant: "default" })}
+              >
+                Login
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
     </>

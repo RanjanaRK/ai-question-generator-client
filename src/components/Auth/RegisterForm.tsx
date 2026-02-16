@@ -33,7 +33,10 @@ const RegisterForm = () => {
           <div className="">
             Already have an account?{" "}
             <span>
-              <Link href={"#"} className="text-blue-600 hover:underline">
+              <Link
+                href={"/auth/login"}
+                className="text-blue-600 hover:underline"
+              >
                 Log in
               </Link>
             </span>
