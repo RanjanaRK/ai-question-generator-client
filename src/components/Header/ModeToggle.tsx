@@ -12,11 +12,14 @@ const ModeToggle = () => {
   return (
     <>
       <button
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="flex items-center gap-2 rounded-full border px-3 py-2 transition hover:bg-muted"
+        onClick={() => setTheme(isDark ? "light" : "dark")}
+        className="flex items-center justify-center gap-2 rounded-full border px-3 py-2 transition hover:bg-muted"
       >
         {isDark ? <Moon size={16} /> : <Sun size={16} />}
-        <span className="text-sm">{isDark ? "Dark" : "Light"}</span>
+
+        <span className="hidden sm:inline text-sm">
+          {isDark ? "Dark" : "Light"}
+        </span>
       </button>
     </>
   );
