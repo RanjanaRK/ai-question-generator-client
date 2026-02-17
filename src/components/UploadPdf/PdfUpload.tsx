@@ -31,10 +31,7 @@ const PdfUpload = () => {
           <input {...getInputProps()} />
 
           <div className="text-center">
-            <div
-              className="text-2xl font-semibold mb-2 border rounded-xl py-3
-                          bg-foreground/15 hover:bg-foreground/25 w-64"
-            >
+            <div className="text-2xl font-semibold mb-2 border rounded-xl py-3 bg-foreground/15 hover:bg-foreground/25 w-64">
               {isDragActive ? "Drop PDF here" : "Choose PDF file"}
             </div>
 
