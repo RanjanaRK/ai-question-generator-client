@@ -36,7 +36,7 @@ const RootLayout = ({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="mx-auto  max-w-screen-7xl  px-6">{children}</main>
         </ThemeProvider>
       </body>
     </html>

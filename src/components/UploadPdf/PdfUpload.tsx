@@ -26,7 +26,7 @@ const PdfUpload = () => {
                    bg-foreground/5 dark:bg-foreground/10
                    flex flex-col items-center justify-center
                    h-72 cursor-pointer transition
-                   md:w-2xl lg:w-4xl p-10"
+                   w-full "
         >
           <input {...getInputProps()} />
 

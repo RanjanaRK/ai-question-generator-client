@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <>
       <nav className={`${!isAuthPage ? "border-b" : ""} bg-background `}>
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href={"/"} className="flex items-center gap-1">
             <Image
               src="/logopdf.png"
