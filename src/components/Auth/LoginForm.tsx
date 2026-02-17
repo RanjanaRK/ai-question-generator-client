@@ -1,16 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
 import { loginSchema } from "@/lib/schema/zodSchema";
 import { LoginSchemaType } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { Eye, EyeClosed } from "lucide-react";
-import { Separator } from "../ui/separator";
+import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Separator } from "../ui/separator";
 
 const LoginForm = () => {
   const [show, setShow] = useState(true);
@@ -28,7 +27,7 @@ const LoginForm = () => {
   return (
     <>
       <div className="space-y-6">
-        <div className="text-center space-y-2">
+        <div className="space-y-2 text-center">
           <div className="text-4xl font-semibold">Login</div>
           <div className="">
             Don’t have an account?{" "}
@@ -45,16 +44,16 @@ const LoginForm = () => {
         <Button className="w-full bg-blue-600 hover:bg-blue-800">
           Continue with Google
         </Button>
-        <div className="flex items-center gap-3 ">
-          <Separator className=" flex-1" />
+        <div className="flex items-center gap-3">
+          <Separator className="flex-1" />
           <div className="">Or</div>
           <Separator className="flex-1" />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-80">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-80 space-y-4">
           <div className="">
             <Input placeholder="Email" {...register("email")} />
             {errors.email && (
-              <p role="alert" className="text-red-500 text-start text-sm">
+              <p role="alert" className="text-start text-sm text-red-500">
                 {errors.email.message}
               </p>
             )}
@@ -69,13 +68,13 @@ const LoginForm = () => {
             <button
               type="button"
               onClick={() => setShow(!show)}
-              className="absolute right-3 top-2 h-4 w-4 text-muted-foreground"
+              className="text-muted-foreground absolute top-2 right-3 h-4 w-4"
             >
               {show ? <Eye /> : <EyeClosed />}
             </button>
 
             {errors.password && (
-              <p role="alert" className="text-red-500 text-start text-sm">
+              <p role="alert" className="text-start text-sm text-red-500">
                 {errors.password.message}
               </p>
             )}
