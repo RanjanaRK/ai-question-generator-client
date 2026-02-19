@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import QuestionTypeOption from "../GenerateAnswer/QuestionTypeOption";
 
 const PdfViewer = ({ pdfUrl }: { pdfUrl: string }) => {
-  const [numPages, setNumPages] = useState(null);
-
+  const [numPages, setNumPages] = useState<number>();
   const onLoadSuccess = (numPages: any) => {
     setNumPages(numPages);
   };
@@ -17,15 +17,18 @@ const PdfViewer = ({ pdfUrl }: { pdfUrl: string }) => {
 
   return (
     <>
-      <div className="grid h-44 grid-cols-2 gap-6 border-8 border-green-600 p-6">
-        <Document file={pdfUrl} onLoadSuccess={onLoadSuccess}>
+      <div className="grid h-44 grid-cols-2 gap-6 p-6">
+        <Document
+          file="/UNIT-4.pdf"
+          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+        >
           {Array.from(new Array(numPages), (_, index) => (
-            <Page key={index} pageNumber={index + 1} width={500} />
+            <Page key={index} pageNumber={index + 1} />
           ))}
         </Document>
 
         <div className="rounded-xl border p-6">
-          Generated questions will appear here
+          <QuestionTypeOption />
         </div>
       </div>
     </>
