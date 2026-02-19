@@ -18,45 +18,36 @@ const QuestionTypeOption = () => {
 
   return (
     <>
-      {/* LEFT: PDF PREVIEW */}
-      {/* <div className="flex w-1/2 items-center justify-center overflow-auto bg-gray-200 p-8">
-              <div className="flex h-[600px] w-[420px] items-center justify-center rounded-md bg-white shadow-xl">
-                <span className="text-gray-400">PDF Preview Here</span>
-              </div>
-            </div> */}
-
-      {/* RIGHT: QUESTION PANEL */}
       <div className="flex flex-col justify-center p-10">
-        <h2 className="mb-6 text-2xl font-semibold">Pick a question type:</h2>
-
+        <h2 className="mb-6 text-2xl font-semibold">Pick a question type :</h2>
         <div className="space-y-4">
-          <RadioGroup defaultValue="plus">
-            <FieldLabel htmlFor="plus-plan">
+          <RadioGroup defaultValue="Multiple-choice">
+            <FieldLabel htmlFor="multiple-choice">
               <Field orientation="horizontal">
                 <FieldContent>
-                  <FieldTitle> Multiple-choice questions</FieldTitle>
+                  <FieldTitle>Multiple-choice questions</FieldTitle>
                 </FieldContent>
-                <RadioGroupItem value="plus" id="plus-plan" />
+                <RadioGroupItem value="multiple-choice" id="multiple-choice" />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="pro-plan">
+            <FieldLabel htmlFor="true-or-false">
               <Field orientation="horizontal">
                 <FieldContent>
                   <FieldTitle>True-or-false questions</FieldTitle>
                 </FieldContent>
-                <RadioGroupItem value="pro" id="pro-plan" />
+                <RadioGroupItem value="true-or-false" id="true-or-false" />
               </Field>
             </FieldLabel>
-            <FieldLabel htmlFor="enterprise-plan">
+            <FieldLabel htmlFor="open-ended">
               <Field orientation="horizontal">
                 <FieldContent>
                   <FieldTitle> Open-ended questions</FieldTitle>
                 </FieldContent>
-                <RadioGroupItem value="enterprise" id="enterprise-plan" />
+                <RadioGroupItem value="open-ended" id="open-ended" />
               </Field>
             </FieldLabel>
           </RadioGroup>
-          <Button className="w-full">Generate Questions →</Button>
+          <Button className="w-full">Generate Questions </Button>
         </div>
       </div>
     </>
