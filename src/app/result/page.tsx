@@ -5,7 +5,7 @@ const page = () => {
   return (
     <>
       <div className="">
-        <PdfViewer pdfUrl="/UNIT-4.pdf" />
+        {/* <PdfViewer pdfUrl="/UNIT-4.pdf" /> */}
         <PDFIframe />
       </div>
     </>

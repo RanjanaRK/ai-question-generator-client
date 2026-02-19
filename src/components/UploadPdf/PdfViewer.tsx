@@ -17,12 +17,16 @@ const PdfViewer = ({ pdfUrl }: { pdfUrl: string }) => {
 
   return (
     <>
-      <div className="h-[75vh] overflow-auto rounded-xl bg-white p-4 shadow">
+      <div className="grid h-44 grid-cols-2 gap-6 border-8 border-green-600 p-6">
         <Document file={pdfUrl} onLoadSuccess={onLoadSuccess}>
           {Array.from(new Array(numPages), (_, index) => (
             <Page key={index} pageNumber={index + 1} width={500} />
           ))}
         </Document>
+
+        <div className="rounded-xl border p-6">
+          Generated questions will appear here
+        </div>
       </div>
     </>
   );
