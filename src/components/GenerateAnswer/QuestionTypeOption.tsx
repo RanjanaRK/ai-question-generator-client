@@ -1,21 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 
 import {
   Field,
   FieldContent,
-  FieldDescription,
   FieldLabel,
   FieldTitle,
 } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const QuestionTypeOption = () => {
-  const [select, setSelect] = useState(false);
-
   return (
     <>
       <div className="flex flex-col justify-center p-10">
