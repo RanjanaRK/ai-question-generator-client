@@ -5,6 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { buttonVariants } from "../ui/button";
 import ModeToggle from "./ModeToggle";
+import LogoutButton from "../Auth/LogoutButton";
+import UpgradePlan from "../UserProfile/UpgradePlan";
+import UpgradePlanButton from "../UserProfile/UpgradePlanButton";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -38,12 +41,11 @@ const Navbar = () => {
             <div className="flex items-center gap-3">
               <ModeToggle />
 
-              <Link
-                href="/auth/login"
-                className={buttonVariants({ variant: "default" })}
-              >
+              <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
                 Login
               </Link>
+              <LogoutButton />
+              <UpgradePlanButton plan="free" />
             </div>
           )}
         </div>
