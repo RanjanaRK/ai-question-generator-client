@@ -3,24 +3,21 @@ import PdfUpload from "@/components/UploadPdf/PdfUpload";
 const page = () => {
   return (
     <>
-      <div className=" py-6">
-        <h1 className="text-3xl font-bold text-center pb-10">
-          AI Question Generator
-        </h1>
-        <PdfUpload />
+      <div className="py-6">
+        <div className="mx-auto mt-8 max-w-3xl pb-8 text-center text-3xl font-bold">
+          <h2 className="mb-2 text-xl font-semibold">Upload Your PDF to Generate Questions</h2>
 
-        <div className=" grid grid-cols-4  ">
-          <div className="col-span-3">
-            Instantly create multiple-choice, true-or-false, or open-ended
-            tests. Upload a PDF, and our AI quiz generator will quickly provide
-            questions and potential answers.
-          </div>
-          <ul>
-            <li>Free and easy test maker for teachers</li>
-            <li>Simple PDF to quiz maker for studying</li>
-            <li> Generates questions and answers in seconds</li>
-          </ul>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Choose a file and click <span className="font-medium">“Generate Questions”</span>
+            to create AI-powered quizzes instantly.
+          </p>
+
+          <p className="mt-3 text-xs text-gray-500 dark:text-gray-500">
+            Supported format: PDF • Max size: 5MB
+          </p>
         </div>
+
+        <PdfUpload />
       </div>
     </>
   );
