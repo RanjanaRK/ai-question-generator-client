@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import MCQRenderer from "../GenerateAnswer/MCQRenderer";
 import QARenderer from "../GenerateAnswer/QARenderer";
 import QuestionTypeOption from "../GenerateAnswer/QuestionTypeOption";
@@ -70,13 +71,15 @@ export const dummyQA = [
 ];
 
 export default function PDFIframe() {
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="grid h-screen grid-cols-2 gap-6 p-6">
       <iframe src={"/UNIT-4.pdf"} className="h-full w-full rounded-xl border" />
 
       <div className="rounded-xl border p-6">
-        <QuestionTypeOption />
-        <MCQRenderer data={dummyMCQs} />
+        {loading === true ? <MCQRenderer data={dummyMCQs} /> : <QuestionTypeOption />}
+
         <QARenderer data={dummyQA} />
       </div>
     </div>
