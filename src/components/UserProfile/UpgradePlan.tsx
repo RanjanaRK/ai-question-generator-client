@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "../ui/button";
 
 const UpgradePlan = ({ currentPlan }: { currentPlan: "free" | "pro" }) => {
   const [loading, setLoading] = useState(false);
@@ -34,22 +35,22 @@ const UpgradePlan = ({ currentPlan }: { currentPlan: "free" | "pro" }) => {
           </div>
 
           {/* PRO PLAN */}
-          <div className="relative rounded-2xl border-2 border-indigo-600 p-8 shadow-lg">
-            <span className="absolute top-4 right-4 rounded-full bg-indigo-600 px-3 py-1 text-xs">
+          <div className="relative rounded-2xl border-2 border-indigo-900 p-8 shadow-lg">
+            <span className="bg-foreground/10 absolute top-4 right-4 rounded-full px-3 py-1 text-xs">
               Most Popular
             </span>
 
             <h2 className="mb-4 text-xl font-semibold">Pro Plan</h2>
             <p className="mb-6 text-3xl font-bold">
-              $19<span className="text-sm">/month</span>
+              $5<span className="text-sm">/month</span>
             </p>
 
-            <ul className="mb-6 space-y-3 text-sm">
-              <li>✔ Unlimited PDF uploads</li>
-              <li>✔ Advanced MCQ generation</li>
-              <li>✔ Detailed Q&A</li>
-              <li>✔ Export as PDF</li>
-              <li>✔ Priority processing</li>
+            <ul className="mb-6 space-y-3 text-sm text-gray-600">
+              <li>✔ True / False Questions</li>
+              <li>✔ Open Ended Questions</li>
+              <li>✔ Unlimited History</li>
+              <li>✔ No Auto Deletion</li>
+              <li>✔ Priority Processing</li>
             </ul>
 
             {currentPlan === "pro" ? (
@@ -57,12 +58,13 @@ const UpgradePlan = ({ currentPlan }: { currentPlan: "free" | "pro" }) => {
                 Current Plan
               </button>
             ) : (
-              <button
+              <Button
                 // onClick={handleUpgrade}
-                className="w-full rounded-xl bg-indigo-600 py-2 transition hover:bg-indigo-700"
+                // className="w-full rounded-xl bg-indigo-600 py-2 transition hover:bg-indigo-700"
+                className="w-full"
               >
                 {loading ? "Upgrading..." : "Upgrade to Pro"}
-              </button>
+              </Button>
             )}
           </div>
         </div>
