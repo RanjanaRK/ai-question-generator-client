@@ -15,3 +15,16 @@ export type MCQ = {
   correctAnswer: number;
   explanation?: string;
 };
+
+export interface LoginResponse {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
+}
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+}
