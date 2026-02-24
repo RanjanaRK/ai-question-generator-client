@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/hooks/useAuth";
 import { loginSchema } from "@/lib/schema/zodSchema";
 import { LoginSchemaType } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,13 +11,11 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
-import { useAuth } from "@/hooks/useAuth";
 
 const LoginForm = () => {
   const [show, setShow] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
 
-  const { handleLogin, loading, user } = useAuth();
+  const { handleLogin, loading, user, error } = useAuth();
 
   const {
     register,
@@ -28,10 +27,8 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LoginSchemaType) => {
     try {
-      setErrorMessage("");
       await handleLogin(data);
     } catch (error) {
-      // setErrorMessage(error?.response?.data?.message || "Login failed");
       console.log(error);
     }
   };
@@ -85,9 +82,13 @@ const LoginForm = () => {
               </p>
             )}
           </div>
-
-          <Button type="submit" className="w-full">
-            Login
+          {error && (
+            <p className="text-sm text-red-500">
+              {(error as any)?.response?.data?.message || "Login failed"}
+            </p>
+          )}
+          <Button type="submit" disabled={loading} className="w-full">
+            {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
       </div>
