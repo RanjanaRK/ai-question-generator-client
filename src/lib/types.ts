@@ -16,7 +16,7 @@ export type MCQ = {
   explanation?: string;
 };
 
-export interface LoginResponse {
+export interface AuthResponse {
   user: {
     id: string;
     name: string;

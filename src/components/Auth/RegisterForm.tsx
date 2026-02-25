@@ -10,9 +10,12 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
+import { useAuth } from "@/hooks/useAuth";
 
 const RegisterForm = () => {
   const [show, setShow] = useState(true);
+
+  const { handleRegister, registerError, registerLoading } = useAuth();
 
   const {
     register,
@@ -23,7 +26,13 @@ const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: any) => {
+    try {
+      await handleRegister(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -33,18 +42,13 @@ const RegisterForm = () => {
           <div className="">
             Already have an account?{" "}
             <span>
-              <Link
-                href={"/auth/login"}
-                className="text-blue-600 hover:underline"
-              >
+              <Link href={"/auth/login"} className="text-blue-600 hover:underline">
                 Log in
               </Link>
             </span>
           </div>
         </div>
-        <Button className="w-full bg-blue-600 hover:bg-blue-800">
-          Continue with Google
-        </Button>
+        <Button className="w-full bg-blue-600 hover:bg-blue-800">Continue with Google</Button>
         <div className="flex items-center gap-3">
           <Separator className="flex-1" />
           <div className="">Or</div>
@@ -89,8 +93,8 @@ const RegisterForm = () => {
             )}
           </div>
 
-          <Button type="submit" className="w-full">
-            Login
+          <Button type="submit" disabled={registerLoading} className="w-full">
+            {registerLoading ? "Loading..." : "Register"}
           </Button>
         </form>
       </div>

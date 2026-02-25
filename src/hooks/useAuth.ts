@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { login } from "@/lib/api/auth/login.api";
-import { LoginSchemaType } from "@/lib/types";
+import { LoginSchemaType, RegisterSchemaType } from "@/lib/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { register } from "@/lib/api/auth/register.api";
 
 export const useAuth = () => {
   const router = useRouter();
@@ -26,6 +27,20 @@ export const useAuth = () => {
     },
   });
 
+  const registerMutation = useMutation({
+    mutationFn: (data: RegisterSchemaType) => register(data),
+    onSuccess: (response) => {
+      router.push("/auth/login");
+    },
+    onError: () => {},
+  });
+
+  // const logoutMutation = useMutation({
+  //   mutationFn: () => ,
+  //   onSuccess: () => {},
+  //   onError: () => {},
+  // });
+
   return {
     user: loginMutation.data?.user,
 
@@ -34,5 +49,11 @@ export const useAuth = () => {
     loading: loginMutation.isPending,
 
     error: loginMutation.error,
+
+    handleRegister: registerMutation.mutateAsync,
+
+    registerLoading: registerMutation.isPending,
+
+    registerError: registerMutation.error,
   };
 };
