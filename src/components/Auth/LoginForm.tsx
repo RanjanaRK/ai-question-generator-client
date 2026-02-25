@@ -16,7 +16,7 @@ import GoogleButton from "./GoogleButton";
 const LoginForm = () => {
   const [show, setShow] = useState(true);
 
-  const { handleLogin, loading, user, error } = useAuth();
+  const { handleLogin, loading, error } = useAuth();
 
   const {
     register,
