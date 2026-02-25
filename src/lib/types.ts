@@ -1,5 +1,6 @@
 import z from "zod";
 import { loginSchema, registerSchema } from "./schema/zodSchema";
+import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
 
 export type LoginSchemaType = z.infer<typeof loginSchema>;
 export type RegisterSchemaType = z.infer<typeof registerSchema>;
@@ -17,15 +18,16 @@ export type MCQ = {
 };
 
 export interface AuthResponse {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
+  success: boolean;
+
+  data: User;
+
   message: string;
 }
 export interface User {
   id: string;
   name: string;
   email: string;
+  plan: string;
+  createdAt: Timestamp;
 }

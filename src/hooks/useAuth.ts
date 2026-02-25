@@ -1,7 +1,7 @@
 import { login } from "@/lib/api/auth/login.api";
 import { register } from "@/lib/api/auth/register.api";
 import { LoginSchemaType, RegisterSchemaType } from "@/lib/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ import { googleLogin } from "@/lib/api/auth/googleLogin.api";
 
 export const useAuth = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const context = useContext(AuthContext);
 
   if (!context) {
@@ -21,15 +22,19 @@ export const useAuth = () => {
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginSchemaType) => login(data),
-    onSuccess: (response) => {
-      setUser(response.user);
-      console.log(user);
 
+    onSuccess: (response) => {
       toast.success(response.message);
+
+      // refresh user
+      queryClient.invalidateQueries({
+        queryKey: ["me"],
+      });
+
       router.push("/");
     },
-    onError: (error) => {
-      console.error(error);
+
+    onError: (error: any) => {
       toast.error(error?.message || "Login failed");
     },
   });
@@ -46,25 +51,30 @@ export const useAuth = () => {
   });
 
   const logoutMutation = useMutation({
-    mutationFn: () => logout(),
+    mutationFn: logout,
+
     onSuccess: (response) => {
       toast.success(response.message);
+
+      queryClient.removeQueries({
+        queryKey: ["me"],
+      });
+
       router.push("/auth/login");
-    },
-    onError: (error) => {
-      toast.error(error?.message || "logout failed");
     },
   });
 
-  const googleLoginMutation = useMutation({
-    mutationFn: () => googleLogin(),
+  const googleMutation = useMutation({
+    mutationFn: googleLogin,
+
     onSuccess: (response) => {
-      setUser(response.user);
       toast.success(response.message);
+
+      queryClient.invalidateQueries({
+        queryKey: ["me"],
+      });
+
       router.push("/");
-    },
-    onError: (error) => {
-      toast.error(error?.message || "Login failed");
     },
   });
 
@@ -80,6 +90,6 @@ export const useAuth = () => {
 
     handleLogout: logoutMutation.mutateAsync,
 
-    handleGoogle: googleLoginMutation.mutateAsync,
+    handleGoogle: googleMutation.mutateAsync,
   };
 };
