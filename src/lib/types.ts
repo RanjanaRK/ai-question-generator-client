@@ -22,6 +22,7 @@ export interface AuthResponse {
     name: string;
     email: string;
   };
+  message: string;
 }
 export interface User {
   id: string;

@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
 import { login } from "@/lib/api/auth/login.api";
-import { LoginSchemaType, RegisterSchemaType } from "@/lib/types";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { register } from "@/lib/api/auth/register.api";
+import { LoginSchemaType, RegisterSchemaType } from "@/lib/types";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+import { AuthContext } from "../context/auth.context";
 
 export const useAuth = () => {
   const router = useRouter();
@@ -20,19 +21,24 @@ export const useAuth = () => {
     mutationFn: (data: LoginSchemaType) => login(data),
     onSuccess: (response) => {
       setUser(response.user);
+      toast.success(response.message);
       router.push("/");
     },
     onError: (error) => {
       console.error(error);
+      toast.error(error?.message || "Login failed");
     },
   });
 
   const registerMutation = useMutation({
     mutationFn: (data: RegisterSchemaType) => register(data),
     onSuccess: (response) => {
+      toast.success(response.message);
       router.push("/auth/login");
     },
-    onError: () => {},
+    onError: (error) => {
+      toast.error(error?.message || "Register failed");
+    },
   });
 
   // const logoutMutation = useMutation({

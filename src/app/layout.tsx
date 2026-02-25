@@ -1,10 +1,11 @@
+import Navbar from "@/components/Header/Navbar";
+import ThemeProvider from "@/components/Header/ThemeProvider";
+import AuthProvider from "@/context/auth.context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import ThemeProvider from "@/components/Header/ThemeProvider";
-import Navbar from "@/components/Header/Navbar";
-import AuthProvider from "@/context/auth.context";
+import { ToastContainer } from "react-toastify";
 import ClientProvider from "./ClientProvider";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ const RootLayout = ({
             >
               <Navbar />
               <main className="max-w-screen-7xl mx-auto px-6">{children}</main>
+              <ToastContainer />
             </ThemeProvider>
           </AuthProvider>
         </ClientProvider>
