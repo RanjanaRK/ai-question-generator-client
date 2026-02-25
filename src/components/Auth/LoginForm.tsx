@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
+import GoogleButton from "./GoogleButton";
 
 const LoginForm = () => {
   const [show, setShow] = useState(true);
@@ -46,7 +47,7 @@ const LoginForm = () => {
             </span>
           </div>
         </div>
-        <Button className="w-full bg-blue-600 hover:bg-blue-800">Continue with Google</Button>
+        <GoogleButton />
         <div className="flex items-center gap-3">
           <Separator className="flex-1" />
           <div className="">Or</div>

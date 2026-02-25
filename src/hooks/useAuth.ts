@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/auth.context";
 import { logout } from "@/lib/api/auth/logout.api";
+import { googleLogin } from "@/lib/api/auth/googleLogin.api";
 
 export const useAuth = () => {
   const router = useRouter();
@@ -55,6 +56,18 @@ export const useAuth = () => {
     },
   });
 
+  const googleLoginMutation = useMutation({
+    mutationFn: () => googleLogin(),
+    onSuccess: (response) => {
+      setUser(response.user);
+      toast.success(response.message);
+      router.push("/");
+    },
+    onError: (error) => {
+      toast.error(error?.message || "Login failed");
+    },
+  });
+
   return {
     user,
     handleLogin: loginMutation.mutateAsync,
@@ -66,5 +79,7 @@ export const useAuth = () => {
     registerError: registerMutation.error,
 
     handleLogout: logoutMutation.mutateAsync,
+
+    handleGoogle: googleLoginMutation.mutateAsync,
   };
 };
