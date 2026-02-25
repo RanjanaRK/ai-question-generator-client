@@ -3,7 +3,7 @@ import { AuthResponse, RegisterSchemaType } from "@/lib/types";
 
 export const register = async (registerData: RegisterSchemaType): Promise<AuthResponse> => {
   try {
-    const { data } = await api.post("api/auth/login", {
+    const { data } = await api.post("api/auth/register", {
       name: registerData.name,
       email: registerData.email,
       password: registerData.password,

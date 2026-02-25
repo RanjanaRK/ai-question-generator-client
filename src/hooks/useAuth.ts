@@ -37,7 +37,7 @@ export const useAuth = () => {
       router.push("/auth/login");
     },
     onError: (error) => {
-      toast.error(error?.message || "Register failed");
+      toast.error(error?.response?.data?.message || "Register failed");
     },
   });
 
