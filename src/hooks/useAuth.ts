@@ -22,6 +22,8 @@ export const useAuth = () => {
     mutationFn: (data: LoginSchemaType) => login(data),
     onSuccess: (response) => {
       setUser(response.user);
+      console.log(user);
+
       toast.success(response.message);
       router.push("/");
     },
@@ -54,7 +56,7 @@ export const useAuth = () => {
   });
 
   return {
-    user: loginMutation.data?.user,
+    user,
     handleLogin: loginMutation.mutateAsync,
     loading: loginMutation.isPending,
     error: loginMutation.error,
