@@ -2,13 +2,28 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { Button } from "../ui/button";
+import { useUploadPdf } from "@/hooks/useFile";
+import { toast } from "react-toastify";
 
 const PdfUpload = () => {
   const [file, setFile] = useState<File | null>(null);
 
+  const uploadMutation = useUploadPdf();
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
   }, []);
+
+  const handleUpload = () => {
+    if (!file) return;
+
+    try {
+      const abc = uploadMutation.mutate(file);
+
+      console.log(uploadMutation);
+    } catch (error) {}
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -34,17 +49,18 @@ const PdfUpload = () => {
             <p className="opacity-80">or drag & drop files here</p>
 
             {file && (
-              <p className="bg-accent mt-4 rounded px-3 py-1 text-sm font-semibold">
-                {file.name}
-              </p>
+              <p className="bg-accent mt-4 rounded px-3 py-1 text-sm font-semibold">{file.name}</p>
             )}
           </div>
         </div>
 
-        {/* Submit Button */}
-        <button className="bg-primary text-primary-foreground rounded-xl px-6 py-3 transition hover:opacity-90 disabled:opacity-50">
-          Generate questions
-        </button>
+        <Button
+          className="bg-primary text-primary-foreground rounded-xl px-6 py-3 transition hover:opacity-90 disabled:opacity-50"
+          onClick={handleUpload}
+          disabled={!file || uploadMutation.isPending}
+        >
+          {uploadMutation.isPending ? "Uploading..." : "Generate Questions"}
+        </Button>
       </div>
     </>
   );

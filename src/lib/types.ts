@@ -31,3 +31,8 @@ export interface User {
   plan: string;
   createdAt: Timestamp;
 }
+
+export interface UploadPdfResponse {
+  success: boolean;
+  pdfId: string;
+}
