@@ -11,7 +11,7 @@ export const useUploadPdf = () => {
     mutationFn: uploadPdf,
     onSuccess: (data) => {
       toast.success(data.success);
-      router.push("/result/${data.pdfId}");
+      router.push(`/result/${data.pdfId}`);
     },
   });
   onError: (error: any) => {
