@@ -4,7 +4,11 @@ import { Field, FieldContent, FieldLabel, FieldTitle } from "@/components/ui/fie
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "../ui/button";
 
-const QuestionTypeOption = () => {
+type props = {
+  onGenerate: (type: string) => void;
+};
+
+const QuestionTypeOption = ({ onGenerate }: props) => {
   return (
     <>
       <div className="animate-in fade-in flex flex-col justify-center p-10 duration-500">

@@ -31,7 +31,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchUser();
   }, []);
 
-  console.log(user);
+  // console.log(user);
   return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 };
 

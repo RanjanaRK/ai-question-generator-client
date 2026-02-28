@@ -77,15 +77,30 @@ type Props = {
 
 export default function PDFIframe({ pdfId }: Props) {
   const [loading, setLoading] = useState(false);
+  const [questionType, setQuestionType] = useState<string | null>(null);
 
   const { data } = useGetPdf(pdfId);
 
+  const handleGenerate = (type: string) => {
+    setQuestionType(type);
+  };
   return (
     <div className="grid h-screen grid-cols-2 gap-6 p-6">
       <iframe src={data?.data.signedUrl} className="h-full w-full rounded-xl border" />
 
       <div className="rounded-xl border p-6">
-        {loading === true ? <MCQRenderer data={dummyMCQs} /> : <QuestionTypeOption />}
+        {loading === true ? (
+          <MCQRenderer data={dummyMCQs} />
+        ) : (
+          <QuestionTypeOption onGenerate={handleGenerate} />
+        )}
+        <div className="rounded-xl border p-6">
+          {questionType === null && <QuestionTypeOption onGenerate={handleGenerate} />}
+
+          {questionType === "multiple-choice" && <MCQRenderer data={dummyMCQs} />}
+
+          {questionType === "open-ended" && <QARenderer data={dummyQA} />}
+        </div>
 
         {/* <QARenderer data={dummyQA} /> */}
       </div>
