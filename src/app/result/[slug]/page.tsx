@@ -8,7 +8,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
     <>
       <div className="">
         {/* <PdfViewer pdfUrl="/UNIT-4.pdf" /> */}
-        <PDFIframe />
+        <PDFIframe pdfId={slug} />
       </div>
     </>
   );

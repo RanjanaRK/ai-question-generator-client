@@ -1,17 +1,10 @@
 import { api } from "@/lib/axios";
+import { GetPdfResponse } from "@/lib/types";
 
-export interface PdfResponse {
-  success: boolean;
-
-  data: {
-    id: string;
-    originalName: string;
-    parsedText: string;
-  };
-}
-
-export const getPdf = async (pdfId: string): Promise<PdfResponse> => {
+export const getPdf = async (pdfId: string): Promise<GetPdfResponse> => {
   const { data } = await api.get(`/api/pdf/${pdfId}`);
+
+  console.log(data);
 
   return data;
 };

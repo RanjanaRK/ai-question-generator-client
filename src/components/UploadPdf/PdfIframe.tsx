@@ -4,6 +4,7 @@ import { useState } from "react";
 import MCQRenderer from "../GenerateAnswer/MCQRenderer";
 import QARenderer from "../GenerateAnswer/QARenderer";
 import QuestionTypeOption from "../GenerateAnswer/QuestionTypeOption";
+import { useGetPdf } from "@/hooks/useFile";
 
 export const dummyMCQs = [
   {
@@ -70,17 +71,23 @@ export const dummyQA = [
   },
 ];
 
-export default function PDFIframe() {
+type Props = {
+  pdfId: string;
+};
+
+export default function PDFIframe({ pdfId }: Props) {
   const [loading, setLoading] = useState(false);
+
+  const { data } = useGetPdf(pdfId);
 
   return (
     <div className="grid h-screen grid-cols-2 gap-6 p-6">
-      <iframe src={"/UNIT-4.pdf"} className="h-full w-full rounded-xl border" />
+      <iframe src={data?.data.signedUrl} className="h-full w-full rounded-xl border" />
 
       <div className="rounded-xl border p-6">
         {loading === true ? <MCQRenderer data={dummyMCQs} /> : <QuestionTypeOption />}
 
-        <QARenderer data={dummyQA} />
+        {/* <QARenderer data={dummyQA} /> */}
       </div>
     </div>
   );

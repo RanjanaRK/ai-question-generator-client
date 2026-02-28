@@ -36,3 +36,20 @@ export interface UploadPdfResponse {
   success: boolean;
   pdfId: string;
 }
+
+export type PdfDocument = {
+  id: string;
+  originalName: string;
+  storagePath: string;
+  createdAt: string;
+  expiresAt: string | null;
+  userId: string | null;
+  parsedText: string | null;
+  status: string;
+  signedUrl: string;
+};
+
+export type GetPdfResponse = {
+  success: boolean;
+  data: PdfDocument;
+};
