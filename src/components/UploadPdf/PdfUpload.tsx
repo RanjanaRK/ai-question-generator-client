@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const PdfUpload = () => {
   const [file, setFile] = useState<File | null>(null);
 
-  const uploadMutation = useUploadPdf();
+  const { pdfUploadmutate, error, loading } = useUploadPdf();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
@@ -19,10 +19,10 @@ const PdfUpload = () => {
     if (!file) return;
 
     try {
-      const abc = uploadMutation.mutate(file);
-
-      console.log(uploadMutation);
-    } catch (error) {}
+      pdfUploadmutate(file);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -57,9 +57,9 @@ const PdfUpload = () => {
         <Button
           className="bg-primary text-primary-foreground rounded-xl px-6 py-3 transition hover:opacity-90 disabled:opacity-50"
           onClick={handleUpload}
-          disabled={!file || uploadMutation.isPending}
+          disabled={!file || loading}
         >
-          {uploadMutation.isPending ? "Uploading..." : "Generate Questions"}
+          {loading ? "Uploading..." : "Generate Questions"}
         </Button>
       </div>
     </>
