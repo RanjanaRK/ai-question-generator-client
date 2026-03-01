@@ -4,7 +4,7 @@ import { UploadPdfResponse } from "@/lib/types";
 export const mcqGenerate = async (pdfId: string) => {
   try {
     const { data } = await api.post("api/generate/mcq", {
-      pdfId,
+      pdfId: pdfId,
     });
 
     console.log(data);

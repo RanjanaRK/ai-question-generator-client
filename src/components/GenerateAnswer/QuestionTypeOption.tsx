@@ -3,12 +3,24 @@
 import { Field, FieldContent, FieldLabel, FieldTitle } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "../ui/button";
+import { useGenerate } from "@/hooks/useGenerate";
+import { mcqGenerate } from "@/lib/api/questionAns/mcqGenerate.api";
 
 type props = {
   onGenerate: (type: string) => void;
 };
 
 const QuestionTypeOption = ({ onGenerate }: props) => {
+  const { McqMutation } = useGenerate();
+
+  // console.log(McqMutation);
+
+  const generator = async () => {
+    console.log("CLICKED");
+    const abc = await McqMutation("e4f514eb-71aa-4135-ae2a-7ecdbc944689");
+    console.log(abc);
+  };
+
   return (
     <>
       <div className="animate-in fade-in flex flex-col justify-center p-10 duration-500">
@@ -49,7 +61,9 @@ const QuestionTypeOption = ({ onGenerate }: props) => {
               </Field>
             </FieldLabel>
           </RadioGroup>
-          <Button className="w-full">Generate Questions </Button>
+          <Button className="w-full" onClick={generator}>
+            Generate Questions
+          </Button>
         </div>
       </div>
     </>
