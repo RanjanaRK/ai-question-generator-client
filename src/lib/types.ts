@@ -56,7 +56,7 @@ export type MCQOptions = {
 
 export interface MCQ {
   question: string;
-  options: MCQOptions[];
+  options: MCQOptions;
   correctAnswer: "A" | "B" | "C" | "D";
 }
 

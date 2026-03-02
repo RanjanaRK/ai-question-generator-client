@@ -118,13 +118,7 @@ export default function PDFIframe({ pdfId }: Props) {
     <div className="grid h-screen grid-cols-2 gap-6 p-6">
       <iframe src={data?.data.signedUrl} className="h-full w-full rounded-xl border" />
 
-      <div className="rounded-xl border p-6">
-        <div className="rounded-xl border p-6">
-          <QuestionTypeOption onGenerate={handleGenerate} />
-
-          {/* <MCQRenderer data={dummyMCQs} QARenderer data={dummyQA} /> */}
-        </div>
-      </div>
+      <div className="rounded-xl border p-6">{renderContent()}</div>
     </div>
   );
 }
