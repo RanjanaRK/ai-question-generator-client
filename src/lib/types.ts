@@ -22,7 +22,9 @@ export interface User {
   name: string;
   email: string;
   plan: string;
-  createdAt: Timestamp;
+  role: string;
+  createdAt: Date;
+  pdfs: PdfDocument[];
 }
 
 export interface UploadPdfResponse {

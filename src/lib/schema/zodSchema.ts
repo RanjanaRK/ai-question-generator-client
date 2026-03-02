@@ -16,3 +16,7 @@ export const registerSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters" })
     .max(30, { message: "Password must be at most 30 characters" }),
 });
+
+export const profileUpdateSchema = z.object({
+  name: z.string().min(2, { message: "must be at least 2 characters" }),
+});
