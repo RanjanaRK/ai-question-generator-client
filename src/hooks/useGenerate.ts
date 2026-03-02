@@ -10,12 +10,7 @@ export const useGenerate = () => {
     onSuccess: (data) => {
       toast.success(data.success);
     },
-
-    onError: (error: any) => {
-      console.log(error);
-
-      toast.error("Generation Failed");
-    },
+    onError: (error: any) => {},
   });
   const qaMutation = useMutation({
     mutationFn: qaGenerate,
@@ -24,11 +19,7 @@ export const useGenerate = () => {
       toast.success(data.success);
     },
 
-    onError: (error: any) => {
-      console.log(error);
-
-      toast.error("Generation Failed");
-    },
+    onError: (error: any) => {},
   });
 
   return {

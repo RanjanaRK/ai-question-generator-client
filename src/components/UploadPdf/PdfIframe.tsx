@@ -29,17 +29,21 @@ export default function PDFIframe({ pdfId }: Props) {
           console.log(data);
           toast.success("generated");
         },
+        onError: (err) => {
+          toast.error(err?.response?.data?.message);
+        },
       });
     }
+
     if (type === "open-ended") {
       qaMutation.mutate(pdfId, {
         onSuccess: (data) => {
           setResult(data);
           console.log(data);
-          toast.success("generated");
+          toast.success(data.message);
         },
         onError: (err) => {
-          toast.error(err);
+          toast.error(err?.response?.data?.message);
         },
       });
     }
