@@ -79,7 +79,7 @@ type Props = {
 
 export default function PDFIframe({ pdfId }: Props) {
   const { data } = useGetPdf(pdfId);
-  const { mcqMutation } = useGenerate();
+  const { mcqMutation, qaMutation } = useGenerate();
 
   const [questionType, setQuestionType] = useState<string | null>(null);
   const [result, setResult] = useState<any>(null);
@@ -96,11 +96,34 @@ export default function PDFIframe({ pdfId }: Props) {
         },
       });
     }
+    if (type === "open-ended") {
+      qaMutation.mutate(pdfId, {
+        onSuccess: (data) => {
+          setResult(data);
+          console.log(data);
+          toast.success("generated");
+        },
+        onError: (err) => {
+          toast.error(err);
+        },
+      });
+    }
   };
 
   const renderContent = () => {
     if (mcqMutation.isPending) {
-      return <div>Generating...</div>;
+      return (
+        <>
+          <div className="text-center">Generating...</div>
+        </>
+      );
+    }
+    if (qaMutation.isPending) {
+      return (
+        <>
+          <div className="text-center">Generating...</div>
+        </>
+      );
     }
 
     switch (questionType) {

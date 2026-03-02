@@ -1,6 +1,5 @@
 import { api } from "@/lib/axios";
-import { GenerateMCQResponse, UploadPdfResponse } from "@/lib/types";
-import { promise } from "zod";
+import { GenerateMCQResponse } from "@/lib/types";
 
 export const mcqGenerate = async (pdfId: string): Promise<GenerateMCQResponse> => {
   try {

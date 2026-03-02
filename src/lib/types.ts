@@ -79,3 +79,14 @@ export interface GenerateMCQResponse {
   mcqItems: MCQItems;
   mcqSet: MCQSet;
 }
+
+export interface GenerateQaResponse {
+  success: boolean;
+  total: number;
+  qa: Qa[];
+}
+
+export interface Qa {
+  question: string;
+  answer: string;
+}
