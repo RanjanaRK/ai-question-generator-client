@@ -8,71 +8,6 @@ import { useGetPdf } from "@/hooks/useFile";
 import { useGenerate } from "@/hooks/useGenerate";
 import { toast } from "react-toastify";
 
-export const dummyMCQs = [
-  {
-    question: "What is React?",
-    options: [
-      "A JavaScript library for building user interfaces",
-      "A backend framework",
-      "A database management system",
-      "A programming language",
-    ],
-    correctAnswer: 0,
-    explanation:
-      "React is a JavaScript library developed by Facebook for building component-based user interfaces.",
-  },
-  {
-    question: "Which hook is used to manage state in a functional component?",
-    options: ["useEffect", "useState", "useContext", "useReducer"],
-    correctAnswer: 1,
-    explanation: "useState allows you to add state variables to functional components.",
-  },
-  {
-    question: "What does Next.js primarily provide on top of React?",
-    options: [
-      "Database integration",
-      "Built-in state management",
-      "Server-side rendering and routing",
-      "Mobile app support",
-    ],
-    correctAnswer: 2,
-    explanation:
-      "Next.js provides server-side rendering, file-based routing, API routes, and performance optimizations.",
-  },
-  {
-    question: "Which HTTP method is typically used to create new data?",
-    options: ["GET", "POST", "PUT", "DELETE"],
-    correctAnswer: 1,
-    explanation: "POST is used to send data to the server to create a new resource.",
-  },
-  {
-    question: "What is Prisma used for?",
-    options: [
-      "Frontend styling",
-      "ORM for database management",
-      "Authentication provider",
-      "State management tool",
-    ],
-    correctAnswer: 1,
-    explanation:
-      "Prisma is an ORM that simplifies database access in Node.js and TypeScript applications.",
-  },
-];
-
-export const dummyQA = [
-  {
-    question:
-      "Explain the difference between Server-Side Rendering (SSR) and Client-Side Rendering (CSR).",
-    answer:
-      "SSR renders pages on the server before sending them to the client, improving SEO and initial load time. CSR renders content in the browser using JavaScript after the page loads.",
-  },
-  {
-    question: "What is the role of Prisma in a Next.js application?",
-    answer:
-      "Prisma acts as an ORM that allows developers to interact with databases using type-safe queries in Node.js and TypeScript.",
-  },
-];
-
 type Props = {
   pdfId: string;
 };
@@ -110,27 +45,56 @@ export default function PDFIframe({ pdfId }: Props) {
     }
   };
 
+  const resetGenerate = () => {
+    setResult(null);
+    setQuestionType(null);
+  };
+
   const renderContent = () => {
-    if (mcqMutation.isPending) {
-      return (
-        <>
-          <div className="text-center">Generating...</div>
-        </>
-      );
-    }
-    if (qaMutation.isPending) {
-      return (
-        <>
-          <div className="text-center">Generating...</div>
-        </>
-      );
+    if (mcqMutation.isPending || qaMutation.isPending) {
+      return <div className="text-center">Generating...</div>;
     }
 
     switch (questionType) {
       case "multiple-choice":
-        return <MCQRenderer data={result || []} />;
+        return (
+          <>
+            <MCQRenderer data={result} />
+
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={() => handleGenerate("multiple-choice")}
+                className="rounded-lg bg-black px-4 py-2 text-white"
+              >
+                Generate Again
+              </button>
+
+              <button onClick={resetGenerate} className="rounded-lg border px-4 py-2">
+                Change Type
+              </button>
+            </div>
+          </>
+        );
+
       case "open-ended":
-        return <QARenderer data={result || []} />;
+        return (
+          <>
+            <QARenderer data={result} />
+
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={() => handleGenerate("open-ended")}
+                className="rounded-lg bg-black px-4 py-2 text-white"
+              >
+                Generate Again
+              </button>
+
+              <button onClick={resetGenerate} className="rounded-lg border px-4 py-2">
+                Change Type
+              </button>
+            </div>
+          </>
+        );
 
       default:
         return <QuestionTypeOption onGenerate={handleGenerate} />;

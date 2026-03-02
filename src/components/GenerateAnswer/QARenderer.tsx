@@ -1,14 +1,15 @@
 "use client";
 
-import { QA } from "@/lib/types";
+import { GenerateQaResponse, QA } from "@/lib/types";
 import { useState } from "react";
 
-const QARenderer = ({ data }: { data: QA[] }) => {
+const QARenderer = ({ data }: { data: GenerateQaResponse }) => {
+  if (!data) return null;
   const [revealedIndex, setRevealedIndex] = useState<number | null>(null);
   return (
     <>
       <div className="space-y-6">
-        {data.map((item, index) => {
+        {data.qa.map((item, index) => {
           const isRevealed = revealedIndex === index;
 
           return (
