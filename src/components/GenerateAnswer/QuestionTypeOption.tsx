@@ -2,23 +2,23 @@
 
 import { Field, FieldContent, FieldLabel, FieldTitle } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useState } from "react";
 import { Button } from "../ui/button";
-import { useGenerate } from "@/hooks/useGenerate";
-import { mcqGenerate } from "@/lib/api/questionAns/mcqGenerate.api";
 
 type props = {
   onGenerate: (type: string) => void;
 };
 
 const QuestionTypeOption = ({ onGenerate }: props) => {
-  const { McqMutation } = useGenerate();
+  const [selectedType, setSelectedType] = useState("");
 
-  // console.log(McqMutation);
+  const handleClick = () => {
+    if (!selectedType) {
+      alert("Select Question Type");
+      return;
+    }
 
-  const generator = async () => {
-    console.log("CLICKED");
-    const abc = await McqMutation("e4f514eb-71aa-4135-ae2a-7ecdbc944689");
-    console.log(abc);
+    onGenerate(selectedType);
   };
 
   return (
@@ -26,7 +26,11 @@ const QuestionTypeOption = ({ onGenerate }: props) => {
       <div className="animate-in fade-in flex flex-col justify-center p-10 duration-500">
         <h2 className="mb-6 text-2xl font-semibold">Pick a question type :</h2>
         <div className="space-y-4">
-          <RadioGroup defaultValue="Multiple-choice">
+          <RadioGroup
+            defaultValue="Multiple-choice"
+            value={selectedType}
+            onValueChange={setSelectedType}
+          >
             <FieldLabel htmlFor="multiple-choice">
               <Field
                 orientation="horizontal"
@@ -61,7 +65,7 @@ const QuestionTypeOption = ({ onGenerate }: props) => {
               </Field>
             </FieldLabel>
           </RadioGroup>
-          <Button className="w-full" onClick={generator}>
+          <Button className="w-full" onClick={handleClick}>
             Generate Questions
           </Button>
         </div>

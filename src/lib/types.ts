@@ -10,13 +10,6 @@ export type QA = {
   answer: string;
 };
 
-export type MCQ = {
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  explanation?: string;
-};
-
 export interface AuthResponse {
   success: boolean;
 
@@ -53,3 +46,36 @@ export type GetPdfResponse = {
   success: boolean;
   data: PdfDocument;
 };
+
+export type MCQOptions = {
+  A: string;
+  B: string;
+  C: string;
+  D: string;
+};
+
+export interface MCQ {
+  question: string;
+  options: MCQOptions[];
+  correctAnswer: "A" | "B" | "C" | "D";
+}
+
+export interface MCQSet {
+  id: string;
+  pdfId: string;
+  createdAt: string;
+  expiresAt: string;
+}
+
+export interface MCQItems {
+  count: number;
+}
+
+export interface GenerateMCQResponse {
+  success: boolean;
+  mcqSetId: string;
+  total: number;
+  mcqs: MCQ[];
+  mcqItems: MCQItems;
+  mcqSet: MCQSet;
+}

@@ -5,6 +5,8 @@ import MCQRenderer from "../GenerateAnswer/MCQRenderer";
 import QARenderer from "../GenerateAnswer/QARenderer";
 import QuestionTypeOption from "../GenerateAnswer/QuestionTypeOption";
 import { useGetPdf } from "@/hooks/useFile";
+import { useGenerate } from "@/hooks/useGenerate";
+import { toast } from "react-toastify";
 
 export const dummyMCQs = [
   {
@@ -76,33 +78,52 @@ type Props = {
 };
 
 export default function PDFIframe({ pdfId }: Props) {
-  const [loading, setLoading] = useState(false);
-  const [questionType, setQuestionType] = useState<string | null>(null);
-
   const { data } = useGetPdf(pdfId);
+  const { mcqMutation } = useGenerate();
+
+  const [questionType, setQuestionType] = useState<string | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleGenerate = (type: string) => {
     setQuestionType(type);
+
+    if (type === "multiple-choice") {
+      mcqMutation.mutate(pdfId, {
+        onSuccess: (data) => {
+          setResult(data);
+          console.log(data);
+          toast.success("generated");
+        },
+      });
+    }
   };
+
+  const renderContent = () => {
+    if (mcqMutation.isPending) {
+      return <div>Generating...</div>;
+    }
+
+    switch (questionType) {
+      case "multiple-choice":
+        return <MCQRenderer data={result || []} />;
+      case "open-ended":
+        return <QARenderer data={result || []} />;
+
+      default:
+        return <QuestionTypeOption onGenerate={handleGenerate} />;
+    }
+  };
+
   return (
     <div className="grid h-screen grid-cols-2 gap-6 p-6">
       <iframe src={data?.data.signedUrl} className="h-full w-full rounded-xl border" />
 
       <div className="rounded-xl border p-6">
-        {loading === true ? (
-          <MCQRenderer data={dummyMCQs} />
-        ) : (
-          <QuestionTypeOption onGenerate={handleGenerate} />
-        )}
         <div className="rounded-xl border p-6">
-          {questionType === null && <QuestionTypeOption onGenerate={handleGenerate} />}
+          <QuestionTypeOption onGenerate={handleGenerate} />
 
-          {questionType === "multiple-choice" && <MCQRenderer data={dummyMCQs} />}
-
-          {questionType === "open-ended" && <QARenderer data={dummyQA} />}
+          {/* <MCQRenderer data={dummyMCQs} QARenderer data={dummyQA} /> */}
         </div>
-
-        {/* <QARenderer data={dummyQA} /> */}
       </div>
     </div>
   );

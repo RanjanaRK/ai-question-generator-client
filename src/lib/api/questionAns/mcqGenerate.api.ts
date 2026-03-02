@@ -1,7 +1,8 @@
 import { api } from "@/lib/axios";
-import { UploadPdfResponse } from "@/lib/types";
+import { GenerateMCQResponse, UploadPdfResponse } from "@/lib/types";
+import { promise } from "zod";
 
-export const mcqGenerate = async (pdfId: string) => {
+export const mcqGenerate = async (pdfId: string): Promise<GenerateMCQResponse> => {
   try {
     const { data } = await api.post("api/generate/mcq", {
       pdfId: pdfId,
