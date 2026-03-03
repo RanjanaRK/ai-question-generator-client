@@ -1,9 +1,14 @@
 import { api } from "@/lib/axios";
 import { AuthResponse } from "@/lib/types";
 
-export const getMe = async (): Promise<AuthResponse> => {
+interface UpdateProfileInput {
+  name?: string;
+  email?: string;
+}
+
+export const profileUpdate = async (payload: UpdateProfileInput): Promise<AuthResponse> => {
   try {
-    const { data } = await api.patch("api/user/me");
+    const { data } = await api.patch("api/user/me", payload);
 
     return data;
   } catch (error) {
