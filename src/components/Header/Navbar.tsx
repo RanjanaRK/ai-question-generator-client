@@ -77,6 +77,7 @@ import ModeToggle from "./ModeToggle";
 import LogoutButton from "../Auth/LogoutButton";
 import UpgradePlanButton from "../UserProfile/UpgradePlanButton";
 import { useUser } from "@/hooks/useUser";
+import NavbarUserMenu from "./NavbarUserMenu";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -132,7 +133,8 @@ const Navbar = () => {
 
                 <UpgradePlanButton plan={user.data.plan} />
 
-                <Link href={"/profile"}>{user.data.name}</Link>
+                {/* <Link href={"/profile"}>{user.data.name}</Link> */}
+                <NavbarUserMenu />
               </>
             )}
           </div>
