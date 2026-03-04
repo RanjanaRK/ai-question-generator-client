@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import LogoutButton from "@/components/Auth/LogoutButton";
+import { buttonVariants } from "../ui/button";
 
 const NavbarUserMenu = () => {
   const { data } = useUser();
@@ -64,43 +65,33 @@ const NavbarUserMenu = () => {
             </Link>
           </DropdownMenuItem>
 
-          {/* MANAGE ACCOUNT */}
-          <DropdownMenuItem asChild>
-            <Link href="/profile" className="flex items-center">
-              <Settings className="mr-2 h-4 w-4" />
-              Manage Account
-            </Link>
-          </DropdownMenuItem>
-
           <DropdownMenuSeparator />
 
           {/* LOGOUT */}
           <DropdownMenuItem asChild>
-            <div className="flex w-full items-center">
-              <LogoutButton />
-            </div>
+            {/* <div className="flex w-full items-center"> */}
+            <LogoutButton />
+            {/* </div> */}
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
 
-          {/* DELETE ACCOUNT */}
           <DropdownMenuItem
             onClick={() => setOpenDelete(true)}
-            className="text-red-600 focus:text-red-600"
+            className={buttonVariants({ variant: "default" })}
           >
-            <Trash2 className="mr-2 h-4 w-4" />
             Delete Account
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/* DELETE CONFIRMATION */}
       <AlertDialog open={openDelete} onOpenChange={setOpenDelete}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete your account?</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure you want to delete your account?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. All your data will be permanently deleted.
+              This action is permanent and cannot be undone. Your email address will be permanently
+              blocked and cannot be used to create a new account again.
             </AlertDialogDescription>
           </AlertDialogHeader>
 

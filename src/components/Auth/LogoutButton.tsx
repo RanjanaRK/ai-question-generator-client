@@ -17,7 +17,11 @@ const LogoutButton = () => {
 
   return (
     <>
-      <Button onClick={logoutFn} variant={"destructive"}>
+      <Button
+        onClick={logoutFn}
+        variant={"destructive"}
+        className="hover:bg-red-800 dark:hover:bg-red-500"
+      >
         <LogOut size={18} />
       </Button>
     </>

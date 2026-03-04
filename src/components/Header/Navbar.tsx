@@ -60,7 +60,7 @@ const Navbar = () => {
               <>
                 <ModeToggle />
 
-                <LogoutButton />
+                {/* <LogoutButton /> */}
 
                 <UpgradePlanButton plan={user.data.plan} />
 

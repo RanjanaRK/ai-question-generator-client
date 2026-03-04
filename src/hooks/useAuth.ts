@@ -18,7 +18,7 @@ export const useAuth = () => {
       toast.success(response.message);
 
       queryClient.invalidateQueries({
-        queryKey: ["me"],
+        queryKey: ["user"],
       });
 
       router.push("/");
@@ -46,9 +46,7 @@ export const useAuth = () => {
     onSuccess: (response) => {
       toast.success(response.message);
 
-      queryClient.removeQueries({
-        queryKey: ["me"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["user"] });
 
       router.push("/auth/login");
     },
@@ -60,9 +58,7 @@ export const useAuth = () => {
     onSuccess: (response) => {
       toast.success(response.message);
 
-      queryClient.invalidateQueries({
-        queryKey: ["me"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["user"] });
 
       router.push("/");
     },

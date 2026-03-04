@@ -16,8 +16,8 @@ const UpgradePlanButton = ({ plan }: { plan: string }) => {
       >
         <Crown size={16} />
         Upgrade
+        {/* {plan} */}
       </button>
-      {plan}
     </>
   );
 };
