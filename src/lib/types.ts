@@ -49,6 +49,11 @@ export type GetPdfResponse = {
   data: PdfDocument;
 };
 
+export type deletePdfResponse = {
+  success: boolean;
+  message: string;
+};
+
 export type MCQOptions = {
   A: string;
   B: string;

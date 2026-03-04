@@ -13,6 +13,7 @@ import { useProfile, useUser } from "@/hooks/useUser";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
+import UserProfilePdfList from "./UserProfilePdfList";
 
 type Props = {
   users: {
@@ -142,18 +143,17 @@ const UserProfile = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {" "}
           <div className="rounded-xl border p-5 text-center">
-            {" "}
-            <p className="text-3xl font-bold">{data?.data.pdfs.length}</p>{" "}
-            <p className="text-muted-foreground">PDFs Uploaded</p>{" "}
-          </div>{" "}
+            <p className="text-3xl font-bold">{data?.data.pdfs.length}</p>
+            <p className="text-muted-foreground">PDFs Uploaded</p>
+          </div>
           <div className="rounded-xl border p-5 text-center">
-            {" "}
-            <p className="text-3xl font-bold">{data?.data.plan === "FREE" ? "Free" : "Pro"}</p>{" "}
-            <p className="text-muted-foreground">Current Plan</p>{" "}
-          </div>{" "}
+            <p className="text-3xl font-bold">{data?.data.plan === "FREE" ? "Free" : "Pro"}</p>
+            <p className="text-muted-foreground">Current Plan</p>
+          </div>
         </div>
+
+        <UserProfilePdfList pdfs={data?.data.pdfs ?? []} />
       </div>
     </>
   );

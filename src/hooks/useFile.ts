@@ -1,6 +1,7 @@
+import { deletePdf } from "@/lib/api/pdfFile/deletePdf.api";
 import { getPdf } from "@/lib/api/pdfFile/getPdf.api";
 import { uploadPdf } from "@/lib/api/pdfFile/uploadPdf.api";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -33,4 +34,25 @@ export const useGetPdf = (pdfId: string) => {
 
     enabled: !!pdfId,
   });
+};
+
+export const useDeletePdf = () => {
+  const queryClient = useQueryClient();
+
+  const deletePdfMutation = useMutation({
+    mutationFn: (pdfId: string) => deletePdf(pdfId),
+
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || "Delete failed");
+    },
+  });
+
+  return {
+    deletePdfMutation,
+  };
 };
