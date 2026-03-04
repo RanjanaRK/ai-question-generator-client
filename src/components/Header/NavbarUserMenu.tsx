@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { useUser } from "@/hooks/useUser";
+import { useAccount, useUser } from "@/hooks/useUser";
 
 import {
   DropdownMenu,
@@ -32,27 +32,14 @@ import LogoutButton from "@/components/Auth/LogoutButton";
 
 const NavbarUserMenu = () => {
   const { data } = useUser();
+  const { deleteUserAccount, isDeleting } = useAccount();
   const user = data?.data;
-
-  const router = useRouter();
-  const queryClient = useQueryClient();
 
   const [openDelete, setOpenDelete] = useState(false);
 
-  //   const handleDelete = async () => {
-  //     try {
-  //       const { success, message } = await deleteAccount();
-
-  //       if (success) {
-  //         toast.success(message);
-
-  //         queryClient.clear();
-  //         router.push("/auth/login");
-  //       }
-  //     } catch (error) {
-  //       toast.error("Failed to delete account");
-  //     }
-  //   };
+  const handleDelete = () => {
+    deleteUserAccount();
+  };
 
   if (!user) return null;
 
@@ -90,7 +77,6 @@ const NavbarUserMenu = () => {
           {/* LOGOUT */}
           <DropdownMenuItem asChild>
             <div className="flex w-full items-center">
-              <LogOut className="mr-2 h-4 w-4" />
               <LogoutButton />
             </div>
           </DropdownMenuItem>
@@ -121,10 +107,7 @@ const NavbarUserMenu = () => {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-            <AlertDialogAction
-              // onClick={handleDelete}
-              className="bg-red-600 hover:bg-red-700"
-            >
+            <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700">
               Yes, Delete
             </AlertDialogAction>
           </AlertDialogFooter>

@@ -25,7 +25,7 @@ export const useAuth = () => {
     },
 
     onError: (error: any) => {
-      toast.error(error?.message || "Login failed");
+      toast.error(error?.response?.data?.message);
     },
   });
 

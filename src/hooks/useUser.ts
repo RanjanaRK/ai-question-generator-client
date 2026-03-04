@@ -1,8 +1,11 @@
 "use client";
 
+import { deleteAccount } from "@/lib/api/user/deleteAccount.api";
 import { getMe } from "@/lib/api/user/me.api";
 import { profileUpdate } from "@/lib/api/user/profileUpdate.api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export const useUser = () => {
   return useQuery({
@@ -33,5 +36,30 @@ export const useProfile = () => {
     updateProfile: profileMutation.mutate,
     updateProfileAsync: profileMutation.mutateAsync,
     isUpdating: profileMutation.isPending,
+  };
+};
+
+export const useAccount = () => {
+  const queryClient = useQueryClient();
+
+  const router = useRouter();
+
+  const userAccountMutation = useMutation({
+    mutationFn: deleteAccount,
+    onSuccess: (data) => {
+      toast.success(data.message);
+
+      queryClient.clear();
+
+      router.push("/auth/login");
+    },
+    onError: (error) => {
+      toast.error("Failed to delete account");
+    },
+  });
+  return {
+    deleteUserAccount: userAccountMutation.mutate,
+    deleteUserAccountAsync: userAccountMutation.mutateAsync,
+    isDeleting: userAccountMutation.isPending,
   };
 };
