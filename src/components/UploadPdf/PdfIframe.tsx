@@ -106,7 +106,7 @@ export default function PDFIframe({ pdfId }: Props) {
   };
 
   return (
-    <div className="grid h-screen grid-cols-2 gap-6 p-6">
+    <div className="grid h-screen gap-6 p-6 md:grid-cols-2">
       <iframe src={data?.data.signedUrl} className="h-full w-full rounded-xl border" />
 
       <div className="rounded-xl border p-6">{renderContent()}</div>

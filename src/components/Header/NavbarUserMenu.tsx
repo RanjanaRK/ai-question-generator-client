@@ -37,6 +37,7 @@ const NavbarUserMenu = () => {
   const user = data?.data;
 
   const [openDelete, setOpenDelete] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const handleDelete = () => {
     deleteUserAccount();
@@ -70,7 +71,9 @@ const NavbarUserMenu = () => {
           {/* LOGOUT */}
           <DropdownMenuItem asChild>
             {/* <div className="flex w-full items-center"> */}
+
             <LogoutButton />
+            {/* {hover ? "logout button" : ""} */}
             {/* </div> */}
           </DropdownMenuItem>
 

@@ -15,7 +15,7 @@ const UpgradePlanButton = ({ plan }: { plan: string }) => {
         className="flex items-center gap-2 rounded-2xl bg-linear-to-r from-indigo-600 to-purple-600 px-4 py-2 text-sm font-medium text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg"
       >
         <Crown size={16} />
-        Upgrade
+        <span className="hidden md:block">Upgrade</span>
         {/* {plan} */}
       </button>
     </>

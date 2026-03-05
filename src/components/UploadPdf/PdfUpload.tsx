@@ -35,7 +35,6 @@ const PdfUpload = () => {
   return (
     <>
       <div className="grid place-items-center gap-4">
-        {/* Dropzone */}
         <div
           {...getRootProps()}
           className="border-foreground/45 bg-foreground/5 dark:bg-foreground/10 flex h-72 w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed transition"
