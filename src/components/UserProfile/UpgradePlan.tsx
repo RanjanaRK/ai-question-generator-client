@@ -2,13 +2,17 @@
 
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { useUserPlan } from "@/hooks/useUser";
 
-const UpgradePlan = ({ currentPlan }: { currentPlan: "free" | "pro" }) => {
-  const [loading, setLoading] = useState(false);
+const UpgradePlan = ({ currentPlan }: { currentPlan: "FREE" | "PRO" }) => {
+  const { userPlanMutation } = useUserPlan();
+
+  const handleUpgrade = async () => {
+    await userPlanMutation.mutate({ plan: "PRO" });
+  };
 
   return (
     <>
-      {" "}
       <div className="flex min-h-screen items-center justify-center p-6">
         <div className="grid w-full max-w-4xl gap-8 md:grid-cols-2">
           {/* FREE PLAN */}
@@ -25,7 +29,7 @@ const UpgradePlan = ({ currentPlan }: { currentPlan: "free" | "pro" }) => {
               <li>✖ No export</li>
             </ul>
 
-            {currentPlan === "free" ? (
+            {currentPlan === "FREE" ? (
               <button disabled className="w-full rounded-xl py-2 text-gray-600">
                 Current Plan
               </button>
@@ -53,17 +57,17 @@ const UpgradePlan = ({ currentPlan }: { currentPlan: "free" | "pro" }) => {
               <li>✔ Priority Processing</li>
             </ul>
 
-            {currentPlan === "pro" ? (
+            {currentPlan === "PRO" ? (
               <button disabled className="w-full rounded-xl py-2 text-indigo-600">
                 Current Plan
               </button>
             ) : (
               <Button
-                // onClick={handleUpgrade}
+                onClick={handleUpgrade}
                 // className="w-full rounded-xl bg-indigo-600 py-2 transition hover:bg-indigo-700"
                 className="w-full"
               >
-                {loading ? "Upgrading..." : "Upgrade to Pro"}
+                {userPlanMutation.isPending ? "Upgrading..." : "Upgrade to Pro"}
               </Button>
             )}
           </div>

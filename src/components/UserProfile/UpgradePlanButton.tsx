@@ -6,7 +6,7 @@ import { Crown } from "lucide-react";
 const UpgradePlanButton = ({ plan }: { plan: string }) => {
   const router = useRouter();
 
-  if (plan === "pro") return null;
+  if (plan === "PRO") return null;
 
   return (
     <>

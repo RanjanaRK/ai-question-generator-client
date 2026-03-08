@@ -12,10 +12,13 @@ export type QA = {
 
 export interface AuthResponse {
   success: boolean;
-
   data: User;
-
   message: string;
+}
+export interface UpgradePlanResponse {
+  success: boolean;
+  message: string;
+  data: User;
 }
 export interface User {
   id: string;

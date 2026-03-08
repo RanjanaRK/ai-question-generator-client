@@ -3,6 +3,7 @@
 import { deleteAccount } from "@/lib/api/user/deleteAccount.api";
 import { getMe } from "@/lib/api/user/me.api";
 import { profileUpdate } from "@/lib/api/user/profileUpdate.api";
+import { upgradePlan } from "@/lib/api/user/upgradePlan.api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -61,5 +62,25 @@ export const useAccount = () => {
     deleteUserAccount: userAccountMutation.mutate,
     deleteUserAccountAsync: userAccountMutation.mutateAsync,
     isDeleting: userAccountMutation.isPending,
+  };
+};
+
+export const useUserPlan = () => {
+  const queryClient = useQueryClient();
+
+  const router = useRouter();
+
+  const userPlanMutation = useMutation({
+    mutationFn: upgradePlan,
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to upgrade plan");
+    },
+  });
+  return {
+    userPlanMutation,
   };
 };
