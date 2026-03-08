@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Crown } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const UpgradePlanButton = ({ plan }: { plan: string }) => {
   const router = useRouter();

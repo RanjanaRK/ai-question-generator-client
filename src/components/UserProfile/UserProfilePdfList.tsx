@@ -1,8 +1,8 @@
 import { useDeletePdf } from "@/hooks/useFile";
 import { PdfDocument } from "@/lib/types";
-import { Loader2, Trash } from "lucide-react";
-import { Button } from "../ui/button";
+import { Trash } from "lucide-react";
 import { useState } from "react";
+import { Button } from "../ui/button";
 
 type Props = {
   pdfs: PdfDocument[];

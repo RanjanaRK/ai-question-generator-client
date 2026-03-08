@@ -24,9 +24,7 @@ const ModeToggle = () => {
       >
         {isDark ? <Moon size={16} /> : <Sun size={16} />}
 
-        <span className="hidden text-sm sm:inline">
-          {isDark ? "Dark" : "Light"}
-        </span>
+        <span className="hidden text-sm sm:inline">{isDark ? "Dark" : "Light"}</span>
       </button>
     </>
   );

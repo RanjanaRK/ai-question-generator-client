@@ -1,11 +1,9 @@
 "use client";
 
+import { useUploadPdf } from "@/hooks/useFile";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
-import { useUploadPdf } from "@/hooks/useFile";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 
 const PdfUpload = () => {
   const [file, setFile] = useState<File | null>(null);

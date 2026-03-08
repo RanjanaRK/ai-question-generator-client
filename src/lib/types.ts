@@ -1,30 +1,23 @@
 import z from "zod";
 import { loginSchema, registerSchema } from "./schema/zodSchema";
-import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
 
 export type LoginSchemaType = z.infer<typeof loginSchema>;
 export type RegisterSchemaType = z.infer<typeof registerSchema>;
 
-export type QA = {
-  question: string;
-  answer: string;
-};
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+}
 
-export interface AuthResponse {
-  success: boolean;
-  data: User;
-  message: string;
-}
-export interface UpgradePlanResponse {
-  success: boolean;
-  message: string;
-  data: User;
-}
+export type AuthResponse = ApiResponse<User>;
+export type UpgradePlanResponse = ApiResponse<User>;
+
 export interface User {
   id: string;
   name: string;
   email: string;
-  plan: string;
+  plan: "FREE" | "PRO";
   role: string;
   createdAt: Date;
   pdfs: PdfDocument[];

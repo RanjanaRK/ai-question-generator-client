@@ -1,12 +1,12 @@
 "use client";
 
+import { useGetPdf } from "@/hooks/useFile";
+import { useGenerate } from "@/hooks/useGenerate";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import MCQRenderer from "../GenerateAnswer/MCQRenderer";
 import QARenderer from "../GenerateAnswer/QARenderer";
 import QuestionTypeOption from "../GenerateAnswer/QuestionTypeOption";
-import { useGetPdf } from "@/hooks/useFile";
-import { useGenerate } from "@/hooks/useGenerate";
-import { toast } from "react-toastify";
 
 type Props = {
   pdfId: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { GenerateQaResponse, QA } from "@/lib/types";
+import { GenerateQaResponse } from "@/lib/types";
 import { useState } from "react";
 
 const QARenderer = ({ data }: { data: GenerateQaResponse }) => {
