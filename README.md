@@ -122,29 +122,35 @@ Example Endpoints Used:
 - Login using email/password
 - Google OAuth support
 - Session-based authentication
-  🌟 Future Improvements
-  📊 Dashboard for analytics
-  📥 Export MCQs as PDF
-  🎯 Difficulty selection
-  📱 Mobile optimization
-  🧠 AI explanation for answers
+
+### 🌟 Future Improvements
+
+- 📊 Dashboard for analytics
+- 📥 Export MCQs as PDF
+- 🎯 Difficulty selection
+- 🧠 AI explanation for answers
 
 ---
 
 ## 🌐 Backend Repository
 
-https://github.com/RanjanaRK/shortify-api
+https://github.com/RanjanaRK/ai-question-generator-server
 
 ---
-
-## 👨‍💻 Author
-
-RanjanaRK
 
 ## ⭐ Support
 
 If you like this project, give it a ⭐ on GitHub!
 
-📄 License
+## 👨‍💻 Author
+
+**Ranjana Kumari**  
+Full-Stack Developer (Next.js · Node.js · MongoDB · Express)
+
+🔗 LinkedIn: https://www.linkedin.com/in/ranjanark/
+
+🐙 GitHub: https://github.com/RanjanaRK
+
+## 📄 License
 
 This project is licensed under the **MIT License**.
