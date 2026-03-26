@@ -97,7 +97,7 @@ Example Endpoints Used:
 
 ### 🧠 Generate AI Content
 
--Send pdfId to:
+Send pdfId to:
 
 - /generate/mcq
 - /generate/qa
@@ -115,13 +115,13 @@ Example Endpoints Used:
 - Fast loading with React Query caching
 - Toast notifications for actions
 
----
-
 ### 🔒 Authentication
 
 - Login using email/password
 - Google OAuth support
 - Session-based authentication
+
+---
 
 ### 🌟 Future Improvements
 
