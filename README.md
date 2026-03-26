@@ -129,13 +129,6 @@ Example Endpoints Used:
   📱 Mobile optimization
   🧠 AI explanation for answers
 
-## Scripts
-
-"dev": "next dev",
-"build": "next build",
-"start": "next start",
-"lint": "eslint"
-
 ---
 
 ## 🌐 Backend Repository
