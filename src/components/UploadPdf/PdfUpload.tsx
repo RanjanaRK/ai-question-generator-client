@@ -4,6 +4,7 @@ import { useUploadPdf } from "@/hooks/useFile";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
+import { toast } from "react-toastify";
 
 const PdfUpload = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -17,11 +18,7 @@ const PdfUpload = () => {
   const handleUpload = () => {
     if (!file) return;
 
-    try {
-      pdfUploadmutate(file);
-    } catch (error) {
-      console.log(error);
-    }
+    pdfUploadmutate(file);
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

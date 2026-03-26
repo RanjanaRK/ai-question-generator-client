@@ -34,6 +34,11 @@ This client communicates with the backend API to provide a smooth and interactiv
 
 ---
 
+![Screenshot](./public/ss/ss1.png)
+![Screenshot](./public/ss/ss2.png)
+![Screenshot](./public/ss/ss3.png)
+![Screenshot](./public/ss/ss4.png)
+
 ## 📂 Project Structure
 
 ```src/

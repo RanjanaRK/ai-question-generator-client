@@ -14,10 +14,10 @@ export const useUploadPdf = () => {
       toast.success(data.success);
       router.push(`/result/${data.pdfId}`);
     },
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || "Upload failed");
+    },
   });
-  onError: (error: any) => {
-    console.log(error);
-  };
 
   return {
     pdfUploadmutate: pdfUploadMutation.mutateAsync,
