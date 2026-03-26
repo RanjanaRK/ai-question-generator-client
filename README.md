@@ -42,5 +42,116 @@ This client communicates with the backend API to provide a smooth and interactiv
 ├── components/ # Reusable UI components
 ├── lib/ # API calls, utilities
 ├── hooks/ # Custom hooks
-
 ```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+
+````bash
+git clone https://github.com/RanjanaRK/ai-question-generator-client.git
+cd ai-question-generator-client
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Setup Environment Variables
+
+Create a .env.local file:
+
+NEXT_PUBLIC_API_URL=http://localhost:8000
+4️⃣ Run Development Server
+npm run dev
+
+App will run on:
+
+http://localhost:3000
+``` bash
+````
+
+---
+
+## 🔗 API Integration
+
+This frontend connects to the backend:
+
+👉 http://localhost:8000
+
+Example Endpoints Used:
+
+- POST /api/upload
+- POST /api/generate/mcq
+- POST /api/generate/qa
+- GET /api/mcq/:pdfId
+- GET /api/qa/:pdfId
+
+## 📄 Main Features Flow
+
+### 📤 Upload PDF
+
+- Drag & drop or select file
+- Sent to backend using FormData
+- Receives pdfId
+
+### 🧠 Generate AI Content
+
+-Send pdfId to:
+
+- /generate/mcq
+- /generate/qa
+- Display results in UI
+
+### 📊 View Results
+
+- MCQs displayed with options
+- Q&A displayed in readable format
+
+### 🎨 UI Features
+
+- Dark / Light mode (next-themes)
+- Clean UI using Tailwind + ShadCN
+- Fast loading with React Query caching
+- Toast notifications for actions
+
+---
+
+### 🔒 Authentication
+
+- Login using email/password
+- Google OAuth support
+- Session-based authentication
+  🌟 Future Improvements
+  📊 Dashboard for analytics
+  📥 Export MCQs as PDF
+  🎯 Difficulty selection
+  📱 Mobile optimization
+  🧠 AI explanation for answers
+
+## Scripts
+
+"dev": "next dev",
+"build": "next build",
+"start": "next start",
+"lint": "eslint"
+
+---
+
+## 🌐 Backend Repository
+
+https://github.com/RanjanaRK/shortify-api
+
+---
+
+## 👨‍💻 Author
+
+RanjanaRK
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
+
+📄 License
+
+This project is licensed under the **MIT License**.
