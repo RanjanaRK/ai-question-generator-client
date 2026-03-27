@@ -1,4 +1,4 @@
-# 🖥️ AI Question Generator Client (AskPDF)
+# 🖥️ AI Question Generator Client (AskPDFAI)
 
 A modern frontend application built with **Next.js** that allows users to upload PDFs and generate **MCQs** and **Q&A pairs** using AI.
 
