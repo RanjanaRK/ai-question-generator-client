@@ -9,25 +9,9 @@ import { useContext } from "react";
 
 const GoogleButton = () => {
   const router = useRouter();
-  // const context = useContext(AuthContext);
-
-  // if (!context) {
-  //   throw new Error("useAuth must be used inside AuthProvider");
-  // }
-
-  // const { user, setUser } = context;
 
   const googleHandle = async () => {
-    // try {
-    //   await handleGoogle();
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    window.location.href = "http://localhost:8000/api/auth/google";
-    // setUser(user);
-    // toast.success("logged in");
-    // router.push("/");
+    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/google`;
   };
 
   return (
