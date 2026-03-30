@@ -7,7 +7,7 @@ export const qaGenerate = async (pdfId: string): Promise<GenerateQaResponse> => 
       pdfId: pdfId,
     });
 
-    console.log(data);
+    // console.log(data);
 
     return data;
   } catch (error) {

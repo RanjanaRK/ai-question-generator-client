@@ -9,8 +9,6 @@ export const uploadPdf = async (file: File): Promise<UploadPdfResponse> => {
 
     const { data } = await api.post("api/upload", formData);
 
-    console.log(data);
-
     return data;
   } catch (error) {
     throw error;

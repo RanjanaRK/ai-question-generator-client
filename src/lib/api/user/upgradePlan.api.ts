@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { AuthResponse, UpgradePlanResponse } from "@/lib/types";
+import { UpgradePlanResponse } from "@/lib/types";
 
 interface UpgradePlanType {
   plan: string;

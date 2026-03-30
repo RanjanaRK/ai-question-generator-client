@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import ClientProvider from "./ClientProvider";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Footer from "@/components/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +42,7 @@ const RootLayout = ({
             >
               <Navbar />
               <main className="max-w-screen-7xl mx-auto px-6">{children}</main>
-
+              <Footer />
               <ToastContainer />
             </ThemeProvider>
           </AuthProvider>

@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import { AuthResponse, LoginSchemaType } from "@/lib/types";
+import { AuthResponse } from "@/lib/types";
 
 export const logout = async (): Promise<AuthResponse> => {
   try {

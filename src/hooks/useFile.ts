@@ -2,7 +2,6 @@ import { deletePdf } from "@/lib/api/pdfFile/deletePdf.api";
 import { getPdf } from "@/lib/api/pdfFile/getPdf.api";
 import { uploadPdf } from "@/lib/api/pdfFile/uploadPdf.api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 

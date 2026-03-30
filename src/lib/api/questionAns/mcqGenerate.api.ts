@@ -7,8 +7,6 @@ export const mcqGenerate = async (pdfId: string): Promise<GenerateMCQResponse> =
       pdfId: pdfId,
     });
 
-    // console.log(data);
-
     return data;
   } catch (error) {
     throw error;
