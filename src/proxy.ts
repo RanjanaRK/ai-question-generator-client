@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function proxy(req: NextRequest) {
-  const accessToken = req.cookies.get("access_token")?.value;
-  const refreshToken = req.cookies.get("refresh_token")?.value;
+  const accessToken = req.cookies.get("connect.sid")?.value;
 
-  if (accessToken || refreshToken) {
+  if (accessToken) {
     return NextResponse.next();
   }
 
@@ -12,5 +11,5 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/upgrade-plan/:path*"],
+  matcher: ["/", "/profile/:path*", "/upgrade-plan/:path*"],
 };
