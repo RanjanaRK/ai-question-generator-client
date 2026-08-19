@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function proxy(req: NextRequest) {
-  const accessToken = req.cookies.get("connect.sid")?.value;
+  const token = req.cookies.get("connect.sid")?.value;
+  console.log(req.cookies.getAll());
+  console.log("token:", token);
+  console.log("abcccc");
 
-  if (accessToken) {
+  if (token) {
+    console.log("Authenticated");
     return NextResponse.next();
   }
 
+  console.log("Not Authenticated");
   return NextResponse.redirect(new URL("/auth/login", req.url));
 }
 
