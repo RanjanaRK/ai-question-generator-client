@@ -23,6 +23,12 @@ export interface User {
   pdfs: PdfDocument[];
 }
 
+export interface CurrentUserResponse {
+  success: boolean;
+  authenticated: boolean;
+  user: User;
+}
+
 export interface UploadPdfResponse {
   success: boolean;
   pdfId: string;

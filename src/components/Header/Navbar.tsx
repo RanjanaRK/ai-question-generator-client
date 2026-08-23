@@ -62,7 +62,7 @@ const Navbar = () => {
 
                 {/* <LogoutButton /> */}
 
-                <UpgradePlanButton plan={user.data.plan} />
+                <UpgradePlanButton plan={user.plan} />
 
                 {/* <Link href={"/profile"}>{user.data.name}</Link> */}
                 <NavbarUserMenu />

@@ -1,12 +1,8 @@
 import { api } from "@/lib/axios";
-import { AuthResponse } from "@/lib/types";
+import { CurrentUserResponse, User } from "@/lib/types";
 
-export const getMe = async (): Promise<AuthResponse> => {
-  try {
-    const { data } = await api.get("api/user/me");
+export const getMe = async (): Promise<User> => {
+  const res = await api.get<CurrentUserResponse>("/api/user/me");
 
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return res.data.user;
 };

@@ -11,10 +11,9 @@ import { toast } from "react-toastify";
 export const useUser = () => {
   return useQuery({
     queryKey: ["user"],
-
     queryFn: getMe,
-
     staleTime: 1000 * 60 * 5,
+    retry: false,
   });
 };
 

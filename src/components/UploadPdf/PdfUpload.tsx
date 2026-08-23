@@ -1,13 +1,16 @@
 "use client";
 
 import { useUploadPdf } from "@/hooks/useFile";
-import { useCallback, useState } from "react";
+import { api } from "@/lib/axios";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
-import { toast } from "react-toastify";
 
 const PdfUpload = () => {
   const [file, setFile] = useState<File | null>(null);
+
+  const router = useRouter();
 
   const { pdfUploadmutate, error, loading } = useUploadPdf();
 
@@ -26,6 +29,19 @@ const PdfUpload = () => {
     accept: { "application/pdf": [".pdf"] },
     multiple: false,
   });
+
+  useEffect(() => {
+    api
+      .get("/api/user/me", {
+        withCredentials: true,
+      })
+      .then(() => {
+        router.push("/");
+      })
+      .catch(() => {
+        router.push("/auth/login");
+      });
+  }, []);
 
   return (
     <>
