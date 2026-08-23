@@ -28,7 +28,9 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LoginSchemaType) => {
     try {
-      await handleLogin(data);
+      const res = await handleLogin(data);
+
+      console.log({ res });
     } catch (error) {
       console.log(error);
     }
