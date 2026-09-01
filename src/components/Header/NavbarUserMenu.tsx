@@ -32,9 +32,8 @@ import LogoutButton from "@/components/Auth/LogoutButton";
 import { buttonVariants } from "../ui/button";
 
 const NavbarUserMenu = () => {
-  const { data } = useUser();
+  const { data: user } = useUser();
   const { deleteUserAccount, isDeleting } = useAccount();
-  const user = data?.data;
 
   const [openDelete, setOpenDelete] = useState(false);
   const [hover, setHover] = useState(false);

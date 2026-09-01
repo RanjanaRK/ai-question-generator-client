@@ -20,7 +20,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       try {
         const res = await getMe();
 
-        setUser(res.data);
+        setUser(res);
       } catch {
         setUser(null);
       } finally {
