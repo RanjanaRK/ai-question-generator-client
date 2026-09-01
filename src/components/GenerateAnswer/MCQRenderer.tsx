@@ -2,7 +2,7 @@ import { GenerateMCQResponse } from "@/lib/types";
 
 const MCQRenderer = ({ data }: { data: GenerateMCQResponse }) => {
   if (!data) return null;
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
