@@ -74,6 +74,7 @@ export const useUserPlan = () => {
     onSuccess: (data) => {
       toast.success(data.message);
       queryClient.invalidateQueries({ queryKey: ["user"] });
+      router.push("/");
     },
     onError: (error) => {
       toast.error(error.message || "Failed to upgrade plan");
