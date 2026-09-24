@@ -6,7 +6,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   return (
     <>
-      <div className="">
+      <div className="py-6">
         {/* <PdfViewer pdfUrl="/UNIT-4.pdf" /> */}
         <PDFIframe pdfId={slug} />
       </div>
